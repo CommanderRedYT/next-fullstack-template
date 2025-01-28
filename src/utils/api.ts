@@ -6,10 +6,16 @@ import type { paths } from '@backend/generated/schema';
 
 const tag = `API-${typeof window === 'undefined' ? 'SERVER-SIDE' : 'CLIENT-SIDE'}`;
 
+const alwaysLog = true;
+
 const apiMiddleware: Middleware = {
     onRequest: async ({ request }) => {
         // get token from cookie "token"
-        if (process.env.CI || process.env.NODE_ENV !== 'production') {
+        if (
+            alwaysLog ||
+            process.env.CI ||
+            process.env.NODE_ENV !== 'production'
+        ) {
             console.log(
                 `[${tag}] Fetching ${request.method} ${request.url} with cookies "${request.headers.get('cookie')}"`,
             );
@@ -29,13 +35,22 @@ const apiMiddleware: Middleware = {
         // @ts-expect-error: requestTime is not part of the Node.js Request type
         const time = Date.now() - request.requestTime;
 
-        if (error instanceof DOMException && error.name === 'AbortError') {
-            return;
-        }
+        const msg =
+            error && typeof error === 'object' && 'message' in error
+                ? error.message
+                : 'Unknown error';
 
         console.warn(
-            `[${tag}] Error fetching ${request.url}: ${error && typeof error === 'object' && 'message' in error ? error.message : 'Unknown error'} (${time}ms)`,
+            `[${tag}] Error fetching ${request.url}: ${msg} (${time}ms)`,
         );
+
+        return new Response(JSON.stringify({ error: msg }), {
+            status: 500,
+            statusText: 'Internal Server Error',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
     },
 };
 
@@ -48,8 +63,6 @@ const api =
               baseUrl: '/',
           });
 
-if (process.env.NODE_ENV === 'development') {
-    api.use(apiMiddleware);
-}
+api.use(apiMiddleware);
 
 export default api;

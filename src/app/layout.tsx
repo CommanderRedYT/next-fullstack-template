@@ -8,7 +8,6 @@ import { ApiStoreProvider } from '@/providers/apiStoreProvider';
 import theme from '@/theme';
 
 import { ThemeProvider } from '@mui/material';
-import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 
@@ -37,9 +36,7 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
                     <ApiStoreProvider>
-                        <ApiStoreProvider>
-                            <Container sx={{ mt: 2 }}>{children}</Container>
-                        </ApiStoreProvider>
+                        <ApiStoreProvider>{children}</ApiStoreProvider>
                     </ApiStoreProvider>
                 </ThemeProvider>
             </AppRouterCacheProvider>

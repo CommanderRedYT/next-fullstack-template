@@ -45,9 +45,11 @@ export const createApiStore = (initialState?: PartialDeep<ApiState>) =>
 
             if (users?.success) {
                 set({
+                    // @ts-ignore
                     users: users.data,
                 });
 
+                // @ts-ignore
                 return users.data;
             }
 

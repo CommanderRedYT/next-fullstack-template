@@ -1,35 +1,16 @@
 import type { NextPage } from 'next';
-import { notFound } from 'next/navigation';
+import Link from 'next/link';
 
-import { fetchUsers } from '@/app/_api';
-
-import AddUser from '@components/AddUser';
-import EnterNameField from '@components/EnterNameField';
-import UsersList from '@components/UsersList';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 
-const MainPage: NextPage = async () => {
-    const response = await fetchUsers();
+const HomePage: NextPage = () => (
+    <Box>
+        <Typography variant="h1">Hello, World!</Typography>
+        <Link href="/other">
+            <Typography variant="h2">Go to other page</Typography>
+        </Link>
+    </Box>
+);
 
-    const initialUsers = response.success ? response.data : null;
-
-    if (!initialUsers) {
-        notFound();
-    }
-
-    return (
-        <Box>
-            <Typography variant="h1">Hello, World!</Typography>
-            <Divider />
-            <EnterNameField />
-            <Divider />
-            <UsersList initialUsers={initialUsers} />
-            <Divider />
-            <AddUser />
-        </Box>
-    );
-};
-
-export default MainPage;
+export default HomePage;
