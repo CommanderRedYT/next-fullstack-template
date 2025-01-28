@@ -1,7 +1,7 @@
 FROM node:23-alpine AS base
 
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat ffmpeg python3 py3-pip
+RUN apk add --no-cache libc6-compat
 
 # Install dependencies
 FROM base AS deps
@@ -47,11 +47,10 @@ RUN mkdir -p /app/logs && \
 
 USER nextjs
 
-# use these for non-standalone output
 COPY --from=builder --chown=nextjs:nodejs /app/tsconfig.json ./tsconfig.json
 
 COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/public ./public
+# COPY --from=builder /app/public ./public # comment in case you don't have public folder
 COPY --from=builder /app/backend ./backend
 
 COPY --chown=nextjs:nodejs ./next.config.ts ./next.config.ts
