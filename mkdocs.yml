@@ -1,0 +1,43 @@
+site_name: My project
+site_description: "A short description of my project"
+site_author: "YOUR_NAME"
+copyright: Copyright &copy; YEAR YOUR_NAME
+
+repo_url: https://example.com/my/repo
+repo_name: my/repo
+edit_uri: edit/main/docs/
+
+# extra:
+#   social:
+#     - icon: fontawesome/brands/github
+#       link: https://example.com
+
+theme:
+  # logo: assets/logo.png
+  # favicon: assets/favicon.ico
+  name: material
+  language: en
+  # palette:
+  #   primary: "deep-purple"
+  #   accent: "blue-grey"
+
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.prev_next
+    - navigation.top
+    - search
+    - search.suggest
+    - content.code.copy
+    - content.code.highlight
+    - content.tooltips
+    - content.action.view
+    - content.action.edit
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - github-callouts

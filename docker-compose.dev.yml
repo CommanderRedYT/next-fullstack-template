@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:16-alpine
+    env_file:
+      - .env
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: host
+    volumes:
+      - ./.env:/app/.env
+      - ./logs:/app/logs
+    depends_on:
+      - db
+
+volumes:
+  postgres_data_dev:
