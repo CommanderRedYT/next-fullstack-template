@@ -234,7 +234,7 @@ jobs:
       - name: Tag container with latest using buildx
         run: |
           # tag the container as latest
-          docker buildx imagetools create "${{ env.container_ref }}" --tag "${{ steps.name.outputs.image_name }}:latest"
+          docker buildx imagetools create "${{ env.container_ref }}" --tag "${{ env.image_name }}:latest"
           
           echo "Successfully tagged the container with the tag: latest"
 
