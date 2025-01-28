@@ -130,6 +130,13 @@ jobs:
         with:
           platforms: ${{ env.PLATFORMS }}
 
+      - name: Generate image name
+        id: image-name
+        run: |
+          lower_case_repo=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          image_name="ghcr.io/${lower_case_repo}"
+          echo "image_name=${image_name}" >> $GITHUB_ENV
+
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
@@ -140,7 +147,7 @@ jobs:
             type=raw,value=nightly
 
           images: |
-            ghcr.io/${{ github.repository }}
+            ${{ steps.image-name.outputs.image_name }}
 
       - name: Build and push Docker image
         id: docker_build
@@ -225,10 +232,17 @@ jobs:
         with:
           platforms: ${{ env.PLATFORMS }}
 
+      - name: Generate image name
+        id: image-name
+        run: |
+          lower_case_repo=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          image_name="ghcr.io/${lower_case_repo}"
+          echo "image_name=${image_name}" >> $GITHUB_ENV
+
       - name: Tag container with latest using buildx
         run: |
           # tag the container as latest
-          docker buildx imagetools create "${{ env.container_ref }}" --tag "ghcr.io/${{ github.repository }}:latest"
+          docker buildx imagetools create "${{ env.container_ref }}" --tag "${{ steps.image-name.outputs.image_name }}:latest"
           
           echo "Successfully tagged the container with the tag: latest"
 
@@ -236,6 +250,6 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         run: |
           # tag the container with the git tag
-          docker buildx imagetools create "${{ env.container_ref }}" --tag "ghcr.io/${{ github.repository }}:${{ github.ref }}"
+          docker buildx imagetools create "${{ env.container_ref }}" --tag "${{ steps.image-name.outputs.image_name }}:${{ github.ref }}"
           
           echo "Successfully tagged the container with the tag: ${{ github.ref }}"
