@@ -51,7 +51,7 @@
     "devDependencies": {
         "@eslint/compat": "^1.2.6",
         "@eslint/eslintrc": "^3",
-        "@eslint/js": "^9.19.0",
+        "@eslint/js": "^9.20.0",
         "@microsoft/eslint-formatter-sarif": "^3.1.0",
         "@types/cookie-parser": "^1.4.8",
         "@types/express": "^5.0.0",
@@ -64,7 +64,7 @@
         "eslint": "^9",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-config-airbnb-typescript": "^18.0.0",
-        "eslint-config-next": "15.1.6",
+        "eslint-config-next": "15.1.7",
         "eslint-config-prettier": "^10.0.1",
         "eslint-plugin-deprecation": "^3.0.0",
         "eslint-plugin-import": "^2.31.0",
@@ -75,9 +75,9 @@
         "nodemon": "^3.1.9",
         "openapi-typescript": "^7.6.1",
         "openapi-typescript-helpers": "^0.0.15",
-        "prettier": "^3.4.2",
+        "prettier": "^3.5.1",
         "ts-node-dev": "^2.0.0",
-        "typescript-eslint": "^8.22.0",
+        "typescript-eslint": "^8.24.0",
         "wait-on": "^8.0.2"
     },
     "engines": {
