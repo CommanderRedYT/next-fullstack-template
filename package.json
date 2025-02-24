@@ -49,9 +49,9 @@
         "zustand": "^5.0.3"
     },
     "devDependencies": {
-        "@eslint/compat": "^1.2.6",
+        "@eslint/compat": "^1.2.7",
         "@eslint/eslintrc": "^3",
-        "@eslint/js": "^9.19.0",
+        "@eslint/js": "^9.21.0",
         "@microsoft/eslint-formatter-sarif": "^3.1.0",
         "@types/cookie-parser": "^1.4.8",
         "@types/express": "^5.0.0",
@@ -59,12 +59,12 @@
         "@types/react": "^19",
         "@types/react-dom": "^19",
         "@types/swagger-ui": "^3.52.4",
-        "@types/swagger-ui-express": "^4.1.7",
+        "@types/swagger-ui-express": "^4.1.8",
         "@types/wait-on": "^5.3.4",
         "eslint": "^9",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-config-airbnb-typescript": "^18.0.0",
-        "eslint-config-next": "15.1.6",
+        "eslint-config-next": "15.1.7",
         "eslint-config-prettier": "^10.0.1",
         "eslint-plugin-deprecation": "^3.0.0",
         "eslint-plugin-import": "^2.31.0",
@@ -75,9 +75,9 @@
         "nodemon": "^3.1.9",
         "openapi-typescript": "^7.6.1",
         "openapi-typescript-helpers": "^0.0.15",
-        "prettier": "^3.4.2",
+        "prettier": "^3.5.2",
         "ts-node-dev": "^2.0.0",
-        "typescript-eslint": "^8.22.0",
+        "typescript-eslint": "^8.24.1",
         "wait-on": "^8.0.2"
     },
     "engines": {
